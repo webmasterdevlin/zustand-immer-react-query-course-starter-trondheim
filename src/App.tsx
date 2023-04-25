@@ -9,6 +9,7 @@ import NavigationBar from './components/NavigationBar';
 import { useThemeStore } from './store/themeStore';
 
 export const queryClient = new QueryClient();
+
 function App() {
   const { isDark } = useThemeStore(state => {
     return state.theme;

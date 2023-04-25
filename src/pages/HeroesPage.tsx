@@ -13,7 +13,7 @@ const HeroesPage = () => {
         <div>
           {response?.data.map(h => {
             return (
-              <div key={h.id}>
+              <div data-testid="hero-card" key={h.id}>
                 <h2>{h.firstName}</h2>
               </div>
             );
