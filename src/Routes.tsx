@@ -21,6 +21,12 @@ const HomePage = Loadable(
   }),
 );
 
+const HeroesPage = Loadable(
+  lazy(() => {
+    return import('./pages/HeroesPage');
+  }),
+);
+
 const TablePage = Loadable(
   lazy(() => {
     return import('./pages/TablePage');
@@ -29,6 +35,7 @@ const TablePage = Loadable(
 
 export const pathNames = {
   home: '/',
+  heroes: '/heroes',
   table: '/table',
 } as const;
 
@@ -36,6 +43,10 @@ const lazyRoutes: RouteObject[] = [
   {
     path: pathNames.home,
     element: <HomePage />,
+  },
+  {
+    path: pathNames.heroes,
+    element: <HeroesPage />,
   },
   {
     path: pathNames.table,
