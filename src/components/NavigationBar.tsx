@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Moon, Sun } from 'react-feather';
 import { useNavigate } from 'react-router-dom';
 import { pathNames } from '../Routes';
+import { useThemeStore } from '../store/themeStore';
 import Button from './Button';
 
 const NavigationBar = () => {
   const navigate = useNavigate();
-  const [isDark] = useState(false);
+  const { isDark } = useThemeStore(state => {
+    return state.theme;
+  });
+  const { setDarkTheme, setLightTheme } = useThemeStore();
 
   return (
     <>
@@ -28,7 +32,11 @@ const NavigationBar = () => {
         </div>
 
         <div className="mih-50 flex flex-row flex-wrap items-center justify-between gap-10 pr-10">
-          {isDark ? <Sun className="cursor-pointer" /> : <Moon className="cursor-pointer" />}
+          {isDark ? (
+            <Sun onClick={setLightTheme} className="cursor-pointer" />
+          ) : (
+            <Moon onClick={setDarkTheme} className="cursor-pointer" />
+          )}
         </div>
       </div>
     </>
