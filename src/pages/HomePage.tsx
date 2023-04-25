@@ -8,6 +8,10 @@ const HomePage = () => {
       <h2 data-testid="welcome-message" className={'dark:text-lg dark:text-white dark:hover:text-red-400 '}>
         Welcome to Zustand, Immer, and React Query Course 🧑‍🏫 💻
       </h2>
+
+      <p>
+        Get discounts on our courses at <a href="https://www.leveluptutorials.com/store">Level Up Store</a>
+      </p>
     </div>
   );
 };
