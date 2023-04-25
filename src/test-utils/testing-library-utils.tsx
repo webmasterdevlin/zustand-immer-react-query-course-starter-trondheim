@@ -3,9 +3,10 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter } from 'react-router-dom';
 import FallbackRenderer from '../components/FallbackRenderer';
 import NavigationBar from '../components/NavigationBar';
+import type { ReactElement, ReactNode } from 'react';
 
-const render = (ui: any, { ...renderOptions } = {}) => {
-  const wrapper = ({ children }: any) => {
+const render = (ui: ReactElement, { ...renderOptions } = {}) => {
+  const wrapper = ({ children }: { children: ReactNode }) => {
     return (
       <BrowserRouter>
         <NavigationBar />
