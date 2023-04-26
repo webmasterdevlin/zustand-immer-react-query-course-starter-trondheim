@@ -8,13 +8,10 @@ export default function useAddHero() {
   const queryClient = useQueryClient();
 
   return useMutation(
-    hero => {
+    (hero: HeroModel) => {
       return postAxios<HeroModel>(EndPoints.heroes, hero);
     },
     {
-      onMutate: async (hero: HeroModel) => {
-        await queryClient.cancelQueries([keys.heroes]);
-      },
       onSuccess: (res, params, ctx) => {
         queryClient.setQueryData<{ data: HeroModel[] }>([keys.heroes], cache => {
           return cache?.data ? { data: [...cache.data, res.data] } : { data: [res.data] };
