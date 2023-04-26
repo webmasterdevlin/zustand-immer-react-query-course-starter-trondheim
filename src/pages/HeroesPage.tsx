@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { useQueryClient } from 'react-query';
 import Button from '../components/Button';
+import FormSubmission from '../components/FormSubmission';
 import TitleBar from '../components/TitleBar';
 import UpdateUiLabel from '../components/UpdateUiLabel';
 import useFetchHeroes from '../features/heroes/hooks/useFetchHeroes';
+import useRemoveHero from '../features/heroes/hooks/useRemoveHero';
 import { keys } from '../features/keyNames';
 import type { HeroModel } from '../features/heroes/hero';
 
 const HeroesPage = () => {
   const { data: response, status } = useFetchHeroes();
+  const { mutate } = useRemoveHero();
   const queryClient = useQueryClient();
 
   const [tracker, setTracker] = useState('0');
@@ -28,6 +31,11 @@ const HeroesPage = () => {
   return (
     <div>
       <TitleBar title="Heroes Page" />
+      <FormSubmission
+        handleMutate={x => {
+          return console.log(x);
+        }}
+      />
       <UpdateUiLabel />
       {status === 'loading' ? (
         <p>Loading... Please wait</p>
@@ -54,6 +62,14 @@ const HeroesPage = () => {
                   }}
                 >
                   Remove
+                </Button>
+                <Button
+                  color="secondary"
+                  onClick={() => {
+                    mutate(h.id);
+                  }}
+                >
+                  DELETE in DB
                 </Button>
               </div>
             </div>
