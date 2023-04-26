@@ -10,7 +10,7 @@ const houseSelector = 'House';
 const knownAsSelector = 'Known As';
 
 test.beforeEach(async ({ page }) => {
-  await page.route(heroesEndpoint, (route: Route) => {
+  await page.route(heroesEndpoint, route => {
     route.fulfill({
       status: 200,
       body: JSON.stringify([
@@ -35,7 +35,7 @@ test.beforeEach(async ({ page }) => {
 
 test('Should be able to send post request', async ({ page }) => {
   await page.goto(homePageUrl);
-  await page.route(heroesEndpoint, async (route: Route) => {
+  await page.route(heroesEndpoint, async route => {
     route.fulfill({
       status: 200,
       body: JSON.stringify([]),
@@ -51,7 +51,8 @@ test('Should be able to send post request', async ({ page }) => {
   await page.getByLabel(houseSelector).fill('DC');
   await page.getByLabel(houseSelector).press('Tab');
   await page.getByLabel(knownAsSelector).fill('DarkStar Destroyer');
-  await page.route(heroesEndpoint, (route: Route) => {
+
+  await page.route(heroesEndpoint, route => {
     route.fulfill({
       status: 201,
       body: JSON.stringify({
