@@ -1,5 +1,5 @@
 export type HeroModel = {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   house: string;
